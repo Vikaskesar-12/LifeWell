@@ -1,0 +1,27 @@
+
+
+  @media all and (max-width: 768px) {
+    .hs-2 .hero-single{
+        padding-top: 25px;
+        padding-bottom: 25px;
+       
+      }
+      .hero-single .hero-content .hero-title{
+        font-size: 21px;
+      }
+      .theme-btn {
+        padding: 5px 15px;
+      }
+      .hero-single .hero-content p {
+        margin-bottom: 10px;
+    }
+
+    .hero-single .hero-content p {
+        margin-bottom: 10px;
+    }
+
+    /* .site-heading-inline {
+        display: block;
+    } */
+
+    }    
