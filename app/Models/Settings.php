@@ -6,5 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Settings extends Model
 {
-    protected $fillable=['id', 'about_us', 'privacy_policy', 'return_policy', 'logo', 'address', 'phone', 'email', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'id', // Optional – only if you're manually filling it
+        'logo',
+        'favicon',
+        'site_title',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'address',
+        'phone',
+        'email',
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedin'
+    ];
+    
 }

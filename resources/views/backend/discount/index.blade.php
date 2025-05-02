@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Discount')
+@section('title', 'LIFWEL || Discount')
 @section('main-content')
 
     <div class="card shadow mb-4">

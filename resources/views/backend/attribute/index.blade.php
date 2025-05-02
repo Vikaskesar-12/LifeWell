@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Discount')
+@section('title', 'LIFWEL || Discount')
 @section('main-content')
 
     <div class="card shadow mb-4">
@@ -35,7 +35,6 @@
                             <th>Name</th>
                             <th>Code</th>
                             <th>Type</th>
-                            <th>Values</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -46,13 +45,7 @@
                                 <td>{{ $attribute->name }}</td>
                                 <td>{{ $attribute->code }}</td>
                                 <td>{{ $attribute->type }}</td>
-                                <td>
-                                    <ul>
-                                        @foreach ($attribute->values as $val)
-                                            <li>{{ $val->value }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
+
 
                                 <td>
                                     <a href="{{ route('admin.attributes.edit', $attribute->id) }}"

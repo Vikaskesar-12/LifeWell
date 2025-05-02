@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Products')
+@section('title', 'LIFWEL || Products')
 @section('main-content')
 
 

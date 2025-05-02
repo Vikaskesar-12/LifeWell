@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Brand Create')
+@section('title', 'LIFWEL || Brand Create')
 @section('main-content')
 
     <div class="card">
@@ -17,17 +17,17 @@
                 </div>
 
                 <!-- <div class="form-group">
-                  <label for="cat_id">Category <span class="text-danger">*</span></label>
-                  <select name="category_id" id="cat_id" class="form-control">
-                      <option value="">--Select any category--</option>
-                      @foreach ($category as $key => $cat_data)
+                      <label for="cat_id">Category <span class="text-danger">*</span></label>
+                      <select name="category_id" id="cat_id" class="form-control">
+                          <option value="">--Select any category--</option>
+                          @foreach ($category as $key => $cat_data)
     <option value='{{ $cat_data->id }}'>{{ $cat_data->title_en }}</option>
     @endforeach
-                  </select>
-                  @error('category_id')
+                      </select>
+                      @error('category_id')
         <span class="text-danger">{{ $message }}</span>
     @enderror
-                </div> -->
+                    </div> -->
 
                 <div class="form-group">
                     <label for="size">Category</label>

@@ -6,7 +6,7 @@
         CategoryController,UsersController,FaqController,ContactUsController,OtherBannerController,ProductVariantController,CollectionController};
     use App\Http\Controllers\Frontend\{FrontendHomeController,AuthController,AccountController,WishListController};
     use App\Http\Middleware\LanguageSwitcher;
-    use App\Http\Controllers\Admin\{DiscountCodeController,AttributeController};
+    use App\Http\Controllers\Admin\{DiscountCodeController,AttributeController,PageController};
 
 
 
@@ -38,8 +38,13 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']], function 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::controller(AdminController::class)->group(function () {
         // Settings
+
+        
         Route::get('settings','settings')->name('settings');
         Route::post('setting/update','settingsUpdate')->name('settings.update');
+
+
+
         // Password Change
         Route::get('change-password','changePassword')->name('change.password.form');
         Route::post('logout','logout')->name('logout');
@@ -89,16 +94,6 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']], function 
 
      
 
-    // Route::get('admin/products/export', [ProductController::class, 'export'])->name('products.export');
-    // Route::post('admin/products/import', [ProductController::class, 'import'])->name('products.import');
-
-
-
-
-
-
-
-
     //
     Route::resource('/specification', SpecificationController::class);
     Route::controller(SpecificationController::class)->group(function () {
@@ -125,6 +120,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']], function 
         Route::get('/contact-us','index')->name('contact.index');
         Route::get('/contact/display','displayData')->name('contact.display');
     });
+
+
+    // product variant 
     Route::controller(ProductVariantController::class)->group(function () {
         Route::get('/product-variant/{id}', 'index')->name('product-variant');
         Route::get('/variant/display','displayData')->name('variant.display');
@@ -148,7 +146,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']], function 
  
 
 
-
+      // Add Attribute 
       Route::get('attributes', [AttributeController::class, 'index'])->name('admin.attributes.index');
       Route::get('attributes/create', [AttributeController::class, 'create'])->name('admin.attributes.create');
       Route::post('attributes', [AttributeController::class, 'store'])->name('admin.attributes.store');
@@ -156,7 +154,23 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']], function 
       Route::put('attributes/{id}', [AttributeController::class, 'update'])->name('admin.attributes.update');
       Route::delete('attributes/{id}', [AttributeController::class, 'destroy'])->name('admin.attributes.destroy');
       
-    
+
+
+
+
+      Route::get('pages', [PageController::class, 'index'])->name('admin.pages');
+      Route::get('pages/create', [PageController::class, 'create'])->name('admin.pages.create');
+      Route::post('pages/store', [PageController::class, 'store'])->name('pages.store');
+      Route::get('pages/edit/{page}', [PageController::class, 'edit'])->name('pages.edit');
+      Route::put('pages/update/{page}', [PageController::class, 'update'])->name('pages.update');
+
+
+    // frontend dynamic page route (bottom of web.php)
+    // Route::get('/{slug}', function ($slug) {
+    // $page = \App\Models\Page::where('slug', $slug)->firstOrFail();
+    //  return view('frontend.page', compact('page'));
+    //  });
+
 
 
 

@@ -1,166 +1,173 @@
 @extends('backend.layouts.master')
 
 @section('main-content')
+    <div class="row">
 
-<div class="card">
-    <h5 class="card-header">Edit Post</h5>
-    <div class="card-body">
-    <form method="post" action="{{route('settings.update')}}" enctype="multipart/form-data">
-        @csrf 
-        {{-- @method('PATCH') --}}
-        {{-- {{dd($data)}} --}}
-        <input type="hidden" name="id" value="{{$data ? $data->id : ''}}">
-        <div class="form-group">
-          <label for="short_des" class="col-form-label"> About Us <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="quote" name="aboutUs">{{$data ? $data->about_us : ''}}</textarea>
-          @error('short_des')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="description" class="col-form-label">privacy Policy <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="description" name="privacy_policy">{{$data ? $data->privacy_policy : ''}}</textarea>
-          @error('description')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="description" class="col-form-label">Return Policy <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="terms" name="return_policy">{{$data ? $data->return_policy : ''}}</textarea>
-          @error('description')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-       
-        <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Logo <span class="text-danger">*</span></label>
-          <div class="input-group">
-          <input id="thumbnail1" class="form-control" type="file" accept="image/*" name="logo">
-        </div>
-        @if($data && $data->logo)
-          <div class="field item form-group" >
-              <label class="col-form-label col-md-3 col-sm-3 label-align"><span class="required"></span></label>
-              <div class="col-md-6 col-sm-6">
-                  <div class="image-preview mt-3" id="imagePreview">
-                      <div class="image-container" style="position: relative; display: inline-block; margin: 5px;">
-                          <img src="{{ asset($data->logo) }}" id="logo-preview" class="ml-2" style="height:100px; width:100px;">
-                      </div>
-                  </div>
-              </div>
+        {{-- LEFT CARD + RIGHT CARD MERGED INTO SINGLE FORM --}}
+        <div class="col-md-12">
+            <div class="card shadow p-4 mb-4">
 
-          </div>
-          @endif
-        <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
+                <div class="card-header bg-primary text-white d-flex align-items-center">
 
-          @error('logo')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
+                    <h5 class="mb-0"><i class="fas fa-cogs"></i> Website Settings</h5>
+                </div>
+                {{-- <h4 class="card-title mb-4"><i class="fas fa-cogs"></i> Website Settings</h4> --}}
+
+                <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $data->id ?? '' }}">
+
+                    <div class="row">
+                        {{-- Logo --}}
+                        <div class="col-md-6 form-group">
+                            <label><i class="fas fa-image"></i> Logo <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control" name="logo" accept="image/*">
+                            @if ($data && $data->logo)
+                                <img src="{{ asset($data->logo) }}" alt="Logo" class="mt-2" style="height: 50px;">
+                            @endif
+                            @error('logo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Favicon --}}
+                        <div class="col-md-6 form-group">
+                            <label>Favicon</label>
+                            <input type="file" class="form-control" name="favicon" accept="image/x-icon,image/png">
+                            @if ($data && $data->favicon)
+                                <img src="{{ asset($data->favicon) }}" alt="Favicon" class="mt-2" style="height: 30px;">
+                            @endif
+                            @error('favicon')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Website Title --}}
+                        <div class="col-md-6 form-group">
+                            <label>Website Title</label>
+                            <input type="text" name="site_title" class="form-control"
+                                value="{{ $data->site_title ?? '' }}" required>
+                            @error('site_title')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Meta Title --}}
+                        <div class="col-md-6 form-group">
+                            <label>Meta Title</label>
+                            <input type="text" name="meta_title" class="form-control"
+                                value="{{ $data->meta_title ?? '' }}" placeholder="Enter website meta title">
+                            @error('meta_title')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Meta Description --}}
+                        <div class="col-md-12 form-group">
+                            <label>Meta Description</label>
+                            <textarea name="meta_description" class="form-control" rows="3" placeholder="Short meta description for SEO">{{ $data->meta_description ?? '' }}</textarea>
+                            @error('meta_description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Meta Keywords --}}
+                        <div class="col-md-12 form-group">
+                            <label>Meta Keywords</label>
+                            <input name="meta_keywords" class="form-control tagify-input"
+                                placeholder="e.g. university, admission, abroad" value="{{ $data->meta_keywords ?? '' }}">
+                            @error('meta_keywords')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Address --}}
+                        <div class="col-md-6 form-group">
+                            <label>Address <span class="text-danger">*</span></label>
+                            <input type="text" name="address" class="form-control" value="{{ $data->address ?? '' }}"
+                                required>
+                            @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="col-md-6 form-group">
+                            <label>Email <span class="text-danger">*</span></label>
+                            <input type="email" name="email" class="form-control" value="{{ $data->email ?? '' }}"
+                                required>
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Phone --}}
+                        <div class="col-md-6 form-group">
+                            <label>Phone <span class="text-danger">*</span></label>
+                            <input type="text" name="phone" class="form-control" value="{{ $data->phone ?? '' }}"
+                                required>
+                            @error('phone')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Social Media Section --}}
+                        <div class="col-md-12 mt-4">
+
+                            <div class="card-header bg-primary text-white d-flex align-items-center">
+
+                                <h5 class="mb-0"> Social Media</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Facebook</label>
+                            <input type="url" name="facebook" class="form-control"
+                                placeholder="https://facebook.com/yourpage" value="{{ $data->facebook ?? '' }}">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Twitter</label>
+                            <input type="url" name="twitter" class="form-control"
+                                placeholder="https://twitter.com/yourprofile" value="{{ $data->twitter ?? '' }}">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Instagram</label>
+                            <input type="url" name="instagram" class="form-control"
+                                placeholder="https://instagram.com/yourhandle" value="{{ $data->instagram ?? '' }}">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>LinkedIn</label>
+                            <input type="url" name="linkedin" class="form-control"
+                                placeholder="https://linkedin.com/in/yourprofile" value="{{ $data->linkedin ?? '' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3 text-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        
-       
-
-        <div class="form-group">
-          <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="address" required value="{{$data ? $data->address : ''}}">
-          @error('address')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" name="email" required value="{{$data ? $data->email : ''}}">
-          @error('email')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="phone" class="col-form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="phone" required value="{{$data ? $data->phone : ''}}">
-          @error('phone')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-
-        <div class="form-group mb-3">
-           <button class="btn btn-success" type="submit">Update</button>
-        </div>
-      </form>
     </div>
-</div>
 
+    <!-- Tagify CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
+
+    <!-- Tagify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.querySelector('.tagify-input');
+            if (input) {
+                new Tagify(input);
+            }
+        });
+    </script>
 @endsection
-
-@push('styles')
-<link rel="stylesheet" href="{{asset('backend/summernote/summernote.min.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-
-@endpush
-@push('scripts')
-<script src="{{asset('backend/summernote/summernote.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-    $('#summary').summernote({
-      placeholder: "Write short description.....",
-        tabsize: 2,
-        height: 150
-    });
-    });
-
-    $(document).ready(function() {
-      $('#quote').summernote({
-        placeholder: "Write about us.....",
-          tabsize: 2,
-          height: 100
-      });
-    });
-    $(document).ready(function() {
-      $('#description').summernote({
-        placeholder: "Write detail  pravicy policy.....",
-          tabsize: 2,
-          height: 150
-      });
-    });
-    $(document).ready(function() {
-      $('#terms').summernote({
-        placeholder: "Write return policy.....",
-          tabsize: 2,
-          height: 150
-      });
-    });
-</script>
-<script>
-    $(document).on('change', '#thumbnail1', function(event) {
-    const files = Array.from(event.target.files);
-    console.log('files', files);
-
-    if (files.length > 0) {
-        const file = files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#logo-preview').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-    }
-});
-$(document).on('change', '#thumbnail2', function(event) {
-    const files = Array.from(event.target.files);
-    console.log('files', files);
-
-    if (files.length > 0) {
-        const file = files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#photo-preview').attr('src', e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-    }
-});
-</script>
-@endpush

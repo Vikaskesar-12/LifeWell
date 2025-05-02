@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Add Product')
+@section('title', 'LIFWEL || Add Product')
 @section('main-content')
     @if (session('success'))
         <div class="alert alert-success">
@@ -295,8 +295,8 @@
                 <div class="product-variant col-md-12" id="product-variant">
                     <p>Add Product Variant:</p>
                     <!-- <div class="add-button col-md-12 offset-11">
-                                                                                                                                                                                                                                                                                              <button class="btn btn-success ms-auto" id="add_variant" type="button">Add Variant</button>
-                                                                                                                                                                                                                                                                                          </div> -->
+                                                                                                                                                                                                                                                                                                  <button class="btn btn-success ms-auto" id="add_variant" type="button">Add Variant</button>
+                                                                                                                                                                                                                                                                                              </div> -->
 
                     <div class="row">
                         <div class="form-group col-md-4">

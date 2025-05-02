@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || Edit Product')
+@section('title', 'LIFWEL || Edit Product')
 @section('main-content')
 
 
@@ -262,32 +262,32 @@
                     </select>
                 </div>
                 <!-- <div class="specification">
-                                                                            </div>
+                                                                                </div>
 
-                                                                            <div class="form-group">
-                                                                              <label for="old_price" class="col-form-label">Old Price(NRS) <span class="text-danger">*</span></label>
-                                                                              <input id="old_price" type="number" name="old_price" placeholder="Enter old price"  value="{{ $product->old_price }}" class="form-control">
-                                                                              @error('old_price')
+                                                                                <div class="form-group">
+                                                                                  <label for="old_price" class="col-form-label">Old Price(NRS) <span class="text-danger">*</span></label>
+                                                                                  <input id="old_price" type="number" name="old_price" placeholder="Enter old price"  value="{{ $product->old_price }}" class="form-control">
+                                                                                  @error('old_price')
         <span class="text-danger">{{ $message }}</span>
     @enderror
-                                                                            </div>
+                                                                                </div>
 
-                                                                            <div class="form-group">
-                                                                              <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
-                                                                              <input id="price" type="number" name="price" placeholder="Enter price"  value="{{ $product->price }}" class="form-control">
-                                                                              @error('price')
+                                                                                <div class="form-group">
+                                                                                  <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
+                                                                                  <input id="price" type="number" name="price" placeholder="Enter price"  value="{{ $product->price }}" class="form-control">
+                                                                                  @error('price')
         <span class="text-danger">{{ $message }}</span>
     @enderror
-                                                                            </div> -->
+                                                                                </div> -->
 
 
                 <!-- <div class="form-group">
-                                                                              <label for="discount" class="col-form-label">Discount(%)</label>
-                                                                              <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{ $product->discount }}" class="form-control">
-                                                                              @error('discount')
+                                                                                  <label for="discount" class="col-form-label">Discount(%)</label>
+                                                                                  <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{ $product->discount }}" class="form-control">
+                                                                                  @error('discount')
         <span class="text-danger">{{ $message }}</span>
     @enderror
-                                                                            </div> -->
+                                                                                </div> -->
                 <div class="form-group">
                     <label for="is_featured">Top Rated</label><br>
                     <input type="checkbox" name='top_rated' id='top_rated' value='{{ $product->top_rated }}'
@@ -307,14 +307,14 @@
                 </div>
 
                 <!-- <div class="form-group">
-                                                                              <label for="condition">Condition</label>
-                                                                              <select name="condition" class="form-control">
-                                                                                  <option value="">--Select Condition--</option>
-                                                                                  <option value="default" {{ $product->condition == 'default' ? 'selected' : '' }}>Default</option>
-                                                                                  <option value="new" {{ $product->condition == 'new' ? 'selected' : '' }}>New</option>
-                                                                                  <option value="hot" {{ $product->condition == 'hot' ? 'selected' : '' }}>Hot</option>
-                                                                              </select>
-                                                                            </div> -->
+                                                                                  <label for="condition">Condition</label>
+                                                                                  <select name="condition" class="form-control">
+                                                                                      <option value="">--Select Condition--</option>
+                                                                                      <option value="default" {{ $product->condition == 'default' ? 'selected' : '' }}>Default</option>
+                                                                                      <option value="new" {{ $product->condition == 'new' ? 'selected' : '' }}>New</option>
+                                                                                      <option value="hot" {{ $product->condition == 'hot' ? 'selected' : '' }}>Hot</option>
+                                                                                  </select>
+                                                                                </div> -->
 
                 <div class="form-group">
                     <label for="stock">Quantity (Stock Avilable Product) * <span class="text-danger">*</span></label>
@@ -325,26 +325,26 @@
                     @enderror
                 </div>
                 <!--  <div class="form-group">
-                                                                              <label for="inputPhoto" class="col-form-label">Photo (Max size: 1MB, dimensions: 800x1000 min, 1600x2000 max, formats: JPG, JPEG)  <span class="text-danger">*</span></label>
-                                                                              <div class="input-group">
-                                                                              <input id="imageInput" class="form-control" type="file" accept="image/*" name="photo[]" value="{{ $product->photo }}" multiple>
-                                                                            </div>
-                                                                           <div id="privew">
-                                                                           @foreach ($product->productImages as $image)
+                                                                                  <label for="inputPhoto" class="col-form-label">Photo (Max size: 1MB, dimensions: 800x1000 min, 1600x2000 max, formats: JPG, JPEG)  <span class="text-danger">*</span></label>
+                                                                                  <div class="input-group">
+                                                                                  <input id="imageInput" class="form-control" type="file" accept="image/*" name="photo[]" value="{{ $product->photo }}" multiple>
+                                                                                </div>
+                                                                               <div id="privew">
+                                                                               @foreach ($product->productImages as $image)
     <div id="deleteId-{{ $image->id }}" style="position: relative; display: inline-block; margin-right: 10px;">
-                                                                                <img src="{{ asset($image->image) }}" alt="" style="width: 100px; height: auto;">
-                                                                                <span class="delete-icon" data-id="{{ json_encode($image) }}" style="position: absolute; top: 0px; right: 0px; color: red; cursor: pointer; font-size: 15px; background: white; border-radius: 50%; padding: 1px;">x</span>
-                                                                              </div>
+                                                                                    <img src="{{ asset($image->image) }}" alt="" style="width: 100px; height: auto;">
+                                                                                    <span class="delete-icon" data-id="{{ json_encode($image) }}" style="position: absolute; top: 0px; right: 0px; color: red; cursor: pointer; font-size: 15px; background: white; border-radius: 50%; padding: 1px;">x</span>
+                                                                                  </div>
     @endforeach
-                                                                           </div>
-                                                                            <div id="previewContainer" style="margin-top: 10px;">
-                                                                            
-                                                                            </div>
-                                                                            <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-                                                                                @if (!empty($errors->get('photo.*')))
+                                                                               </div>
+                                                                                <div id="previewContainer" style="margin-top: 10px;">
+                                                                                
+                                                                                </div>
+                                                                                <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                                                                                    @if (!empty($errors->get('photo.*')))
     <span class="text-danger">Invalid image size, format, or dimensions please check all images. </span>
     @endif
-                                                                            </div> -->
+                                                                                </div> -->
 
                 <div class="form-group">
                     <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>

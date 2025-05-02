@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeWell Account Verification</title>
+    <title>LIFWEL Account Verification</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -84,7 +84,7 @@
     <div class="luvshare-wrap">
 
         <div class="header-wrap">
-            <img src="{{ secure_asset('frontend/img/logo/logo.png') }}" alt="LifeWell Logo">
+            <img src="{{ secure_asset('frontend/img/logo/logo.png') }}" alt="LIFWEL Logo">
         </div>
 
         <div class="box-shadow">
@@ -98,9 +98,9 @@
             <p>Your OTP: <span class="verification-code">{{ $otp }}</span></p>
             <p class="expires">Expires in: 10 minutes</p>
             <p>Best Regards,</p>
-            <p>Team LifeWell</p>
+            <p>Team LIFWEL</p>
         </div>
-        <p class="footer-text">© {{ date('Y') }} <a href="{{ url('/') }}">LifeWell</a>. All rights reserved.
+        <p class="footer-text">© {{ date('Y') }} <a href="{{ url('/') }}">LIFWEL</a>. All rights reserved.
         </p>
     </div>
 </body>

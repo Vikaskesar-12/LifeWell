@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/ico" />
-    <title>@yield('title', 'LifeWell     || DASHBOARD')</title>
+    <title>@yield('title', 'LIFWEL     || DASHBOARD')</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

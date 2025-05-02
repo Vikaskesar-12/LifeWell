@@ -183,39 +183,99 @@ class AdminController extends Controller
         return view('backend.setting')->with('data',$data);
     }
 
-    public function settingsUpdate(Request $request){
-        $request->validate([
-            'phone' => 'nullable|numeric',
-            'email' => 'nullable|email'
-        ]);
-        $id = ['id' => $request->id ? $request->id : null];
-        $pathlogo = null;
-        if($request->hasfile('logo')){
-            $image  = $request->file('logo');
-            $pathlogo   = 'Images/' . uniqid() . '.' . $image->extension();
-            $image->move(public_path('Images'), $pathlogo);
-        }else{
-            $settings   = Settings::find($request->id);
-            $pathlogo   = $settings ? $settings->logo : '';
-        }
-        // dd($request->all());
-        $status = Settings::updateOrCreate($id,[
-                'about_us'        =>  $request->aboutUs,
-                'privacy_policy'  =>  $request->privacy_policy,
-                'return_policy'   =>  $request->return_policy,
-                'logo'            =>  $pathlogo,
-                'address'         =>  $request->address,
-                'phone'           =>  $request->phone,
-                'email'           =>  $request->email    
-        ]);
-        if($status){
-            request()->session()->flash('success','Setting successfully updated');
-        }
-        else{
-            request()->session()->flash('error','Please try again');
-        }
-        return redirect()->route('admin');
+
+
+
+
+
+
+
+
+
+
+public function settingsUpdate(Request $request)
+{
+
+    // dd($request->all());
+    $request->validate([
+        'site_title'       => 'required|string|max:255',
+        'meta_title'       => 'nullable|string|max:255',
+        'meta_description' => 'nullable|string',
+        'meta_keywords'    => 'nullable|string',
+        'address'          => 'required|string|max:255',
+        'email'            => 'nullable|email',
+        'phone'            => 'nullable|numeric',
+        'logo'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+        'favicon'          => 'nullable|image|mimes:ico,png'
+    ]);
+
+    $id = ['id' => $request->id ?? null];
+
+    // Handle logo
+    $pathlogo = null;
+    if ($request->hasFile('logo')) {
+        $image = $request->file('logo');
+        $pathlogo = 'Images/' . uniqid() . '.' . $image->extension();
+        $image->move(public_path('Images'), $pathlogo);
+    } else {
+        $settings = Settings::find($request->id);
+        $pathlogo = $settings->logo ?? null;
     }
+
+    // Handle favicon
+    $pathfavicon = null;
+    if ($request->hasFile('favicon')) {
+        $favicon = $request->file('favicon');
+        $pathfavicon = 'Images/' . uniqid() . '.' . $favicon->extension();
+        $favicon->move(public_path('Images'), $pathfavicon);
+    } else {
+        $settings = Settings::find($request->id);
+        $pathfavicon = $settings->favicon ?? null;
+    }
+
+    $status = Settings::updateOrCreate($id, [
+        'logo'             => $pathlogo,
+        'favicon'          => $pathfavicon,
+        'site_title'       => $request->site_title,
+        'meta_title'       => $request->meta_title,
+        'meta_description' => $request->meta_description,
+        'meta_keywords'    => $request->meta_keywords,
+        'address'          => $request->address,
+        'phone'            => $request->phone,
+        'email'            => $request->email,
+        'facebook'         => $request->facebook,
+        'twitter'          => $request->twitter,
+        'instagram'        => $request->instagram,
+        'linkedin'         => $request->linkedin
+    ]);
+
+    if ($status) {
+        session()->flash('success', 'Settings updated successfully.');
+    } else {
+        session()->flash('error', 'Something went wrong. Please try again.');
+    }
+
+    return redirect()->back();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function changePassword(){
         return view('backend.layouts.changePassword');

@@ -9,8 +9,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin') }}">
         <div class="sidebar-brand-icon text-center py-3">
-            <img src="{{ asset('images/lifwel.png') }}" class="img-fluid" style="max-width: 80%; height: auto;"
-                alt="LifeWell Logo">
+            <img src="{{ asset('images/lifwel1.png') }}" class="img-fluid" style="max-width: 80%; height: auto;"
+                alt="LIFWEL Logo">
         </div>
 
         <!-- <div class="sidebar-brand-text mx-3">Admin</div> -->
@@ -64,46 +64,21 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse"
             aria-expanded="true" aria-controls="categoryCollapse">
             <i class="fas fa-sitemap"></i>
-            <span>Category</span>
+            <span>Catelog</span>
         </a>
         <div id="categoryCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Category Options:</h6>
+                <h6 class="collapse-header">Catelog Options:</h6>
                 <a class="collapse-item" href="{{ route('category.index') }}">Category</a>
-                <a class="collapse-item" href="{{ route('category.create') }}">Add Category</a>
-            </div>
-        </div>
-    </li>
-    <li
-        class="nav-item {{ Route::is('collection.index') || Route::is('collection.create') || Route::currentRouteName() == 'collection.edit' ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collectionCollapse"
-            aria-expanded="true" aria-controls="collectionCollapse">
-            <i class="fas fa-sitemap"></i>
-            <span>Collections</span>
-        </a>
-        <div id="collectionCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Category Options:</h6>
                 <a class="collapse-item" href="{{ route('collection.index') }}">Collection</a>
-                <a class="collapse-item" href="{{ route('collection.create') }}">Add Collection</a>
-            </div>
-        </div>
-    </li>
-    <li
-        class="nav-item {{ Route::is('specification.index') || Route::is('specification.create') || Route::currentRouteName() == 'specification.edit' ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#specificationCollapse"
-            aria-expanded="true" aria-controls="categoryCollapse">
-            <i class="fas fa-sitemap"></i>
-            <span>Specification</span>
-        </a>
-        <div id="specificationCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Specification Options:</h6>
                 <a class="collapse-item" href="{{ route('specification.index') }}">Specification</a>
-                <a class="collapse-item" href="{{ route('specification.create') }}">Add Specification</a>
+                <a class="collapse-item" href="{{ route('brand.index') }}">Brands</a>
+                <a class="collapse-item" href="{{ route('admin.attributes.index') }}">Attribute</a>
             </div>
         </div>
     </li>
+
+
     {{-- Products --}}
     <li
         class="nav-item {{ Route::is('product.index') || Route::is('product.create') || Route::currentRouteName() == 'product.edit' ? 'active' : '' }}">
@@ -116,27 +91,12 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Product Options:</h6>
                 <a class="collapse-item" href="{{ route('product.index') }}">Products</a>
-                <a class="collapse-item" href="{{ route('product.create') }}">Add Product</a>
+                <a class="collapse-item" href="{{ url('admin/product/create') }}">Add Products</a>
             </div>
         </div>
     </li>
 
     {{-- Brands --}}
-    <li
-        class="nav-item {{ Route::is('brand.index') || Route::is('brand.create') || Route::currentRouteName() == 'brand.edit' ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brandCollapse"
-            aria-expanded="true" aria-controls="brandCollapse">
-            <i class="fas fa-table"></i>
-            <span>Brands</span>
-        </a>
-        <div id="brandCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Brand Options:</h6>
-                <a class="collapse-item" href="{{ route('brand.index') }}">Brands</a>
-                <a class="collapse-item" href="{{ route('brand.create') }}">Add Brand</a>
-            </div>
-        </div>
-    </li>
 
 
     {{-- Discount Codes --}}
@@ -160,11 +120,18 @@
 
 
 
+    <li class="nav-item {{ request()->routeIs('pages') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('admin/pages') }}">
+            <i class="fas fa-file-alt"></i>
+            <span>CMS</span>
+        </a>
+    </li>
 
 
 
 
-    {{-- Shipping --}}
+
+
 
 
     <!--Orders -->
@@ -183,7 +150,6 @@
     </li>
 
 
-    <!-- Divider -->
 
 
 
@@ -205,9 +171,11 @@
     <!-- Reviews -->
     <li class="nav-item {{ Route::is('contact.index') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('contact.index') }}">
-            <i class="fas fa-phone"></i>
-            <span>Contacts</span></a>
+            <i class="fas fa-envelope-open-text me-1"></i>
+            <span>Enquiry</span>
+        </a>
     </li>
+
     <li
         class="nav-item {{ Route::is('faq.index') || Route::is('faq.create') || Route::currentRouteName() == 'faq.edit' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#faqCollapse"

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'LifeWell || DASHBOARD')
+@section('title', 'LifWell || DASHBOARD')
 @section('main-content')
     <div class="container-fluid">
         @include('backend.layouts.notification')
